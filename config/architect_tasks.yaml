@@ -1,0 +1,96 @@
+# The Architect - Task Configurations
+
+schema_design:
+  description: |
+    Design a production-ready table schema with all constraints, indexes, and documentation.
+    
+    Requirements:
+    - UUID primary key with gen_random_uuid()
+    - Appropriate data types (DECIMAL for money, TIMESTAMPTZ for timestamps)
+    - Foreign keys with ON DELETE clause (CASCADE, SET NULL, or RESTRICT)
+    - Check constraints for data validation
+    - Audit fields (created_at, updated_at, deleted_at)
+    - Strategic indexes for expected query patterns
+    - Comments on table and columns
+  expected_output: "Complete CREATE TABLE SQL with constraints and indexes"
+  agent: architect
+
+rls_policies:
+  description: |
+    Generate comprehensive Row Level Security policies for user data isolation.
+    
+    Requirements:
+    - Enable RLS on table
+    - Policies for SELECT, INSERT, UPDATE, DELETE
+    - User isolation pattern (auth.uid() = user_id)
+    - Service role bypass for background jobs
+    - Grant appropriate permissions
+    - Exclude soft-deleted records from SELECT
+  expected_output: "Complete RLS policy SQL for all CRUD operations"
+  agent: architect
+  context: [schema_design]
+
+migration_generation:
+  description: |
+    Create a safe database migration with comprehensive safety checklist.
+    
+    Requirements:
+    - UP migration (forward)
+    - DOWN migration (rollback)
+    - Safety checklist (additive?, backfill?, runtime estimate)
+    - Risk analysis (detect dangerous operations)
+    - Verify indexes use CONCURRENTLY
+    - Require Guardian approval
+  expected_output: "Migration file with safety checklist and rollback plan"
+  agent: architect
+
+query_optimization:
+  description: |
+    Analyze SQL query and provide optimization recommendations.
+    
+    Process:
+    - Identify issues (SELECT *, missing WHERE, N+1 patterns)
+    - Recommend specific indexes
+    - Provide optimized query version
+    - Estimate performance improvement
+    - Suggest EXPLAIN ANALYZE validation
+  expected_output: "Query optimization report with specific recommendations"
+  agent: architect
+
+erd_generation:
+  description: |
+    Generate Entity-Relationship Diagram showing full database structure.
+    
+    Requirements:
+    - All tables with key columns
+    - Relationships (has many, belongs to)
+    - Mermaid syntax for rendering
+    - Match actual database schema
+  expected_output: "Mermaid ERD diagram showing all tables and relationships"
+  agent: architect
+
+performance_benchmark:
+  description: |
+    Run performance benchmarks on table and identify optimizations.
+    
+    Metrics:
+    - Query response times (cold and warm cache)
+    - Compare against target thresholds
+    - Identify slow queries
+    - Recommend specific indexes
+    - Consider partitioning for large tables
+  expected_output: "Performance benchmark report with recommendations"
+  agent: architect
+
+integrity_check:
+  description: |
+    Verify database integrity across all tables.
+    
+    Checks:
+    - All foreign keys valid
+    - RLS policies exist on user tables
+    - Constraints enforced
+    - No orphaned records
+    - Unused indexes identified
+  expected_output: "Integrity report with violations flagged"
+  agent: architect

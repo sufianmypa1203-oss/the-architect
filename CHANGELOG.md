@@ -2,19 +2,30 @@
 
 All notable changes to The Architect will be documented in this file.
 
+## [1.1.0] - 2026-02-01
+
+### Added - Full CrewAI Implementation
+- `src/architect_tools.py` - 7 complete CrewAI tool classes
+  - SchemaDesignerTool
+  - RLSPolicyGeneratorTool
+  - MigrationGeneratorTool
+  - QueryOptimizerTool
+  - ERDGeneratorTool
+  - PerformanceBenchmarkerTool
+  - IntegrityCheckerTool
+- `src/architect_agent.py` - Full agent runner with ArchitectCrew class
+- `config/architect_tasks.yaml` - YAML task configurations
+- `examples/transactions_schema.sql` - Complete reference implementation
+- `tests/test_architect.py` - pytest test suite (12 tests)
+- `scripts/architect.py` - Full CLI with argparse
+
+### Changed
+- Factory now delivers COMPLETE agents, not just persona files
+- CLI works with or without CrewAI installed
+
 ## [1.0.0] - 2026-02-01
 
 ### Added
-- Initial release of The Architect agent
-- 10 functional requirements for database mastery
-- Vue Money database map context
-- 7 quick commands (`/architect schema`, `/architect migrate`, etc.)
-- Response templates for schema design, migrations, query optimization
-- 5 automation scripts:
-  - `schema-visualizer.py` - ERD generation
-  - `migration-validator.py` - Safety checks
-  - `rls-auditor.py` - RLS verification
-  - `query-benchmarker.py` - Performance testing
-  - `index-analyzer.py` - Index recommendations
-- Collaboration protocols with The Guardian and The Strategist
-- Success metrics (0 data loss, 100% RLS coverage, <100ms queries)
+- Initial release with agent persona
+- 5 utility scripts
+- README, LICENSE, CHANGELOG

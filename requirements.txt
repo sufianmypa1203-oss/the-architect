@@ -1,0 +1,13 @@
+# Requirements for The Architect
+
+# Core
+crewai>=0.1.0
+
+# Database connectivity
+psycopg2-binary>=2.9.9
+
+# Testing
+pytest>=7.4.0
+
+# Optional: for live database introspection
+# sqlalchemy>=2.0.0
